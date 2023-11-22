@@ -1,4 +1,4 @@
-package com.example.cinra.data.models;
+package com.example.cinra.data.models.errors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

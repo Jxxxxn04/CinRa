@@ -1,4 +1,4 @@
-package com.example.cinra.data.models;
+package com.example.cinra.data.models.booking;
 
 import lombok.Data;
 

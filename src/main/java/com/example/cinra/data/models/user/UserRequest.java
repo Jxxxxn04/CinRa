@@ -1,4 +1,4 @@
-package com.example.cinra.data.models;
+package com.example.cinra.data.models.user;
 
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;

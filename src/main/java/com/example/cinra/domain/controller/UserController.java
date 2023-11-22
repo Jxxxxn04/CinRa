@@ -1,10 +1,10 @@
 package com.example.cinra.domain.controller;
 
 import com.example.cinra.Constants;
-import com.example.cinra.data.models.BookingRequest;
-import com.example.cinra.data.models.EmptyErrorResponse;
-import com.example.cinra.data.models.UserRequest;
-import com.example.cinra.data.models.UserResponse;
+import com.example.cinra.data.models.errors.EmptyErrorResponse;
+import com.example.cinra.data.models.errors.NotFoundErrorResponse;
+import com.example.cinra.data.models.user.UserRequest;
+import com.example.cinra.data.models.user.UserResponse;
 import com.example.cinra.data.service.booking.BookingServiceImpl;
 import com.example.cinra.data.service.user.UserServiceImpl;
 import com.example.cinra.domain.entities.User;
@@ -45,7 +45,7 @@ public class UserController {
             User user = userService.getUser(id);
             return ResponseEntity.status(HttpStatus.OK).body(new UserResponse(user));
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());     // TODO : Bessere Error Message machen
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NotFoundErrorResponse(e.getMessage()));
         }
     }
 
