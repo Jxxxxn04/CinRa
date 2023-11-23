@@ -1,4 +1,4 @@
-package com.example.cinra.data.models.errors;
+package com.example.cinra.data.responses.errors;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

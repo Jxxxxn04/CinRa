@@ -1,10 +1,7 @@
-package com.example.cinra.data.models.booking;
+package com.example.cinra.data.responses.booking;
 
 import com.example.cinra.domain.entities.Booking;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
@@ -16,7 +13,7 @@ public class BookingCreateResponse {
     BookingResponse bookingResponse;
     AddedTo addedTo;
 
-    public BookingCreateResponse(Booking booking) {
+    public  BookingCreateResponse(Booking booking) {
         this.bookingResponse = new BookingResponse(booking);
         this.addedTo = new AddedTo(booking.getUser().getId(), booking.getUser().getUsername());
     }

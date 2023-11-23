@@ -1,6 +1,6 @@
-package com.example.cinra.data.models.user;
+package com.example.cinra.data.responses.user;
 
-import com.example.cinra.data.models.booking.BookingResponse;
+import com.example.cinra.data.responses.booking.BookingResponse;
 import com.example.cinra.domain.entities.Booking;
 import com.example.cinra.domain.entities.User;
 import lombok.Data;

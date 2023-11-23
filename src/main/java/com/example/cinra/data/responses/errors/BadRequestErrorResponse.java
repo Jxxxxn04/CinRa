@@ -1,8 +1,5 @@
-package com.example.cinra.data.models.errors;
+package com.example.cinra.data.responses.errors;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
@@ -16,8 +13,6 @@ public class BadRequestErrorResponse {
     LocalDateTime timestamp = LocalDateTime.now();
     String message = "One or more Variables are missing!";
     List<String> missingArgs = new ArrayList<>();
-    @JsonIgnore
-    ObjectMapper objectMapper = new ObjectMapper();
 
     public BadRequestErrorResponse(List<String> missingArgs) {
         this.missingArgs.addAll(missingArgs);

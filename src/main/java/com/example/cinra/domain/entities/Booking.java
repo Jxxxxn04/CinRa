@@ -21,15 +21,21 @@ public class Booking {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "showtime_id", nullable = false)
+    private Showtime showtime;
+
     @Column(name = "numOfTickets", nullable = false)
     private Integer numOfTickets;
 
     @Column(name = "booking_time", nullable = false)
     private LocalDateTime bookingTime;
 
-    public Booking(User user, Integer numOfTickets) {
+
+    public Booking(User user, Integer numOfTickets, Showtime showtime) {
         this.user = user;
         this.numOfTickets = numOfTickets;
         this.bookingTime = LocalDateTime.now();
+        this.showtime = showtime;
     }
 }

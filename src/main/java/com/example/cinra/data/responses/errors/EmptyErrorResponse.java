@@ -1,7 +1,4 @@
-package com.example.cinra.data.models.errors;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+package com.example.cinra.data.responses.errors;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

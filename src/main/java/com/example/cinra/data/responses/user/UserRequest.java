@@ -1,6 +1,5 @@
-package com.example.cinra.data.models.user;
+package com.example.cinra.data.responses.user;
 
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

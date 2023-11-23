@@ -1,6 +1,6 @@
 package com.example.cinra.data.service.booking;
 
-import com.example.cinra.data.models.booking.BookingRequest;
+import com.example.cinra.data.responses.booking.BookingRequest;
 import com.example.cinra.domain.entities.Booking;
 import jakarta.persistence.EntityNotFoundException;
 

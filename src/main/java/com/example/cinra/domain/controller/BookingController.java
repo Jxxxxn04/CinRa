@@ -1,13 +1,10 @@
 package com.example.cinra.domain.controller;
 
 import com.example.cinra.Constants;
-import com.example.cinra.data.models.booking.BookingCreateResponse;
-import com.example.cinra.data.models.booking.BookingDeleteResponse;
-import com.example.cinra.data.models.booking.BookingRequest;
-import com.example.cinra.data.models.booking.BookingUserResponse;
-import com.example.cinra.data.models.errors.BadRequestErrorResponse;
-import com.example.cinra.data.models.errors.EmptyErrorResponse;
-import com.example.cinra.data.models.errors.NotFoundErrorResponse;
+import com.example.cinra.data.responses.booking.*;
+import com.example.cinra.data.responses.errors.BadRequestErrorResponse;
+import com.example.cinra.data.responses.errors.EmptyErrorResponse;
+import com.example.cinra.data.responses.errors.NotFoundErrorResponse;
 import com.example.cinra.data.service.booking.BookingServiceImpl;
 import com.example.cinra.data.service.user.UserServiceImpl;
 import com.example.cinra.domain.entities.Booking;
@@ -18,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +38,7 @@ public class BookingController {
         for(Booking booking : bookingService.getAllBookings()) {
             responses.add(new BookingUserResponse(booking));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(responses);
+        return ResponseEntity.status(HttpStatus.OK).body(new GetAllBookingsResponse<BookingUserResponse>(responses));
     }
 
     @GetMapping(path = "/{id}")
@@ -55,12 +51,21 @@ public class BookingController {
         }
     }
 
+    @GetMapping(path = "/user/{id}")
+    public ResponseEntity<?> getUserBookings(@PathVariable Long id) {
+        try {
+            User user = userService.getUser(id);
+            return ResponseEntity.status(HttpStatus.OK).body(new BookingGetUserBookingsResponse(user));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NotFoundErrorResponse(e.getMessage()));
+        }
+    }
+
     @PostMapping
     public ResponseEntity<?> addBooking(@RequestBody BookingRequest bookingRequest) {
         EmptyErrorResponse<BookingRequest> emptyErrorResponse = new EmptyErrorResponse<>();
         List<String> list = emptyErrorResponse.checkForEmptyValues(bookingRequest);
         if(!list.isEmpty()) {
-            String errorMessage = "Empty values in fields: " + String.join(", ", list);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new BadRequestErrorResponse(list));
         }
 
